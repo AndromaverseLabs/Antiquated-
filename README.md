@@ -1,0 +1,2 @@
+# docs
+Andromachain's documentation
