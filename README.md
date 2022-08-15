@@ -21,6 +21,10 @@ sudo sysctl -p
 
 ```bash
 curl https://dl.google.com/go/go1.18.3.linux-amd64.tar.gz | sudo tar -C/usr/local -zxvf
+
+OR
+
+curl https://raw.githubusercontent.com/canha/golang-tools-install-script/master/goinstall.sh | bash
 ```
 
 ## Update environment variables
@@ -54,8 +58,8 @@ https://docs.ignite.com/guide/install
 ## Clone source repository
 
 ```bash
-git clone <andromaverse repo link>
-cd <andromaverse binary>
+git clone https://github.com/AndromaverseLabs/ChainFiles
+cd ChainFiles
 git checkout <andromaverse binary latest version>
 ```
 
@@ -68,28 +72,26 @@ ignite chain build
 Initialize the chain
 
 ```bash
-andromaversed init <MONIKER> --chain-id <chain id>
+andromaversed init <MONIKER> --chain-id test-chain-androma-1
 ```
 
 ## Set up persistent peers
 
 ```bash
-cd $HOME/.andromaversed/config/
-nano config.toml
+nano $HOME/.andromaversed/config/config.toml
 ```
 
 Add peers
 
 ```
+
 persistent_peers = <validator-generated persistent peer>
 ```
 
 ## Copy genesis file
 
 ```bash
-git clone <repo link>
-cd testnets/<chain id>
-cp genesis.json $HOME/. andromaversed/config
+curl https://raw.githubusercontent.com/AndromaverseLabs/testnet/main/genesis.json > ~/.andromaversed/config/genesis.json
 ```
 
 ## Starting the network
@@ -106,20 +108,22 @@ You should create a service to ensure the node can run in the background. First,
 
 Create andromaversed.service file with the following. Make sure to replace USER and HOME placeholders
 
-```
+```bash
+sudo tee /etc/systemd/system/quicksilverd.service > /dev/null <<EOF  
 [Unit]
 Description=Andromaversed Node
 After=network-online.target
 
 [Service]
 User=<USER>
-ExecStart=<HOME>/go/bin/andromaversed start
+ExecStart=$(which andromaversed) start
 Restart=always
 RestartSec=3
 LimitNOFILE=4096
 
 [Install]
 WantedBy=multi-user.target
+EOF
 ```
 
 ## Move file to systemd folder and enable the service
@@ -163,11 +167,13 @@ andromaversed tx staking create-validator \
  --amount=100000000uandr \
  --pubkey=$(andromaversed tendermint show-validator) \
  --moniker=<your-moniker> \
- —chain-id=<chain id> \
+ --chain-id=test-chain-androma-1 \
  --commission-rate="0.05" \
  --commission-max-rate="0.10" \
  --commission-max-change-rate="0.05" \
  --min-self-delegation="1" \
- --gas="700000" \
- --from=(keyofyourvalidator)
+ --gas=auto \
+ --gas-adjustment=1.5 \ 
+ --gas-prices=0.025uandr
+ --from=(key of your wallet address)
 ```
