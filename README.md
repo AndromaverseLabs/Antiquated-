@@ -102,11 +102,11 @@ Now start the network with a terminal command to ensure it runs
 andromad start
 ```
 
-## Create andromaversed.service
+## Create andromad.service
 
-You should create a service to ensure the node can run in the background. First, exit from the terminal command "andromaversed start". Ctrl-C will do.
+You should create a service to ensure the node can run in the background. First, exit from the terminal command "andromad start". Ctrl-C will do.
 
-Create andromaversed.service file with the following. Make sure to replace USER and HOME placeholders
+Create andromad.service file with the following. Make sure to replace USER and HOME placeholders
 
 ```bash
 sudo tee /etc/systemd/system/quicksilverd.service > /dev/null <<EOF  
@@ -129,7 +129,7 @@ EOF
 ## Move file to systemd folder and enable the service
 
 ```bash
-sudo mv andromad.service /etc/systemd/system/andromaversed.service
+sudo mv andromad.service /etc/systemd/system/andromad.service
 sudo systemctl enable andromad.service && sudo systemctl start andromad.service
 ```
 
