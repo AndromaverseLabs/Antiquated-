@@ -109,7 +109,7 @@ You should create a service to ensure the node can run in the background. First,
 Create andromad.service file with the following. Make sure to replace USER and HOME placeholders
 
 ```bash
-sudo tee /etc/systemd/system/quicksilverd.service > /dev/null <<EOF  
+sudo tee /etc/systemd/system/andromad.service > /dev/null <<EOF  
 [Unit]
 Description=Andromad Node
 After=network-online.target
