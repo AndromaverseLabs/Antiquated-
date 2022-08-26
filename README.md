@@ -78,7 +78,7 @@ andromad init <MONIKER> --chain-id test-chain-androma-1
 ## Set up persistent peers
 
 ```bash
-nano $HOME/.andromaversed/config/config.toml
+nano $HOME/.andromad/config/config.toml
 ```
 
 Add peers
@@ -91,7 +91,7 @@ persistent_peers = <validator-generated persistent peer>
 ## Copy genesis file
 
 ```bash
-curl https://raw.githubusercontent.com/AndromaverseLabs/testnet/main/genesis.json > ~/.andromaversed/config/genesis.json
+curl https://raw.githubusercontent.com/AndromaverseLabs/testnet/main/genesis.json > ~/.andromad/config/genesis.json
 ```
 
 ## Starting the network
@@ -99,7 +99,7 @@ curl https://raw.githubusercontent.com/AndromaverseLabs/testnet/main/genesis.jso
 Now start the network with a terminal command to ensure it runs
 
 ```bash
-andromaversed start
+andromad start
 ```
 
 ## Create andromaversed.service
@@ -111,12 +111,12 @@ Create andromaversed.service file with the following. Make sure to replace USER 
 ```bash
 sudo tee /etc/systemd/system/quicksilverd.service > /dev/null <<EOF  
 [Unit]
-Description=Andromaversed Node
+Description=Andromad Node
 After=network-online.target
 
 [Service]
 User=<USER>
-ExecStart=$(which andromaversed) start
+ExecStart=$(which andromad) start
 Restart=always
 RestartSec=3
 LimitNOFILE=4096
@@ -129,8 +129,8 @@ EOF
 ## Move file to systemd folder and enable the service
 
 ```bash
-sudo mv andromaversed.service /etc/systemd/system/andromaversed.service
-sudo systemctl enable andromaversed.service && sudo systemctl start andromaversed.service
+sudo mv andromad.service /etc/systemd/system/andromaversed.service
+sudo systemctl enable andromad.service && sudo systemctl start andromad.service
 ```
 
 ## Check node info
@@ -148,12 +148,12 @@ curl -s "http://:26657/status?" | jq .result.sync_info.latest_block_height
 
 ```bash
 # Create new key
-andromaversed keys add <KEY_NAME> --keyring-backend os
+andromad keys add <KEY_NAME> --keyring-backend os
 ```
 
 ```bash
 # Recover key
-andromaversed keys add <MONIKER> --keyring-backend os —-recover
+andromad keys add <MONIKER> --keyring-backend os —-recover
 ```
 
 ## Get test tokens
