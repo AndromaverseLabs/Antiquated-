@@ -72,7 +72,7 @@ ignite chain build
 Initialize the chain
 
 ```bash
-andromaversed init <MONIKER> --chain-id test-chain-androma-1
+andromad init <MONIKER> --chain-id test-chain-androma-1
 ```
 
 ## Set up persistent peers
