@@ -174,6 +174,6 @@ andromad tx staking create-validator \
  --min-self-delegation="1" \
  --gas=auto \
  --gas-adjustment=1.5 \ 
- --gas-prices=0.025uandr
+ --gas-prices=0.025uandr \
  --from=(key of your wallet address)
 ```
