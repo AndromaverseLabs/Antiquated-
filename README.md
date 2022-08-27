@@ -163,9 +163,9 @@ TBD
 ## Create Validator
 
 ```bash
-andromaversed tx staking create-validator \
+andromad tx staking create-validator \
  --amount=100000000uandr \
- --pubkey=$(andromaversed tendermint show-validator) \
+ --pubkey=$(andromad tendermint show-validator) \
  --moniker=<your-moniker> \
  --chain-id=test-chain-androma-1 \
  --commission-rate="0.05" \
