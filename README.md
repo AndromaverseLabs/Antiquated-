@@ -164,7 +164,7 @@ TBD
 
 ```bash
 andromad tx staking create-validator \
- --amount=100000000uandr \
+ --amount=10andr \
  --pubkey=$(andromad tendermint show-validator) \
  --moniker=<your-moniker> \
  --chain-id=test-chain-androma-1 \
@@ -174,6 +174,6 @@ andromad tx staking create-validator \
  --min-self-delegation="1" \
  --gas=auto \
  --gas-adjustment=1.5 \ 
- --gas-prices=0.025uandr \
+ --gas-prices=0.025andr \
  --from=(key of your wallet address)
 ```
